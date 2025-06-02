@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/572d236f-8134-414e-baf4-d7db059bea3c)# Recommendation-System
+# Recommendation-System
 
 # Laporan Proyek Machine Learning - Yuda Reyvandra Herman
 
@@ -154,22 +154,22 @@ Dataset yang digunakan terdiri dari dua file, yaitu “movies.csv” dan “cred
 Grafik menunjukkan bahwa sebagian besar film memiliki durasi antara 90 hingga 120 menit, dengan puncaknya di sekitar 100 menit. Ini mengindikasikan bahwa durasi film yang paling umum atau "standar" berada dalam rentang tersebut.
 
 - **Top 10 Genre Terpopuler**
-![Distribusi Durasi Film](img/s3.png)
+![Genre Terpopuler](img/s3.png)
 
 Genre "Drama" adalah yang paling populer secara signifikan, dengan jumlah film melebihi 2250. Ini menunjukkan bahwa film-film drama memiliki representasi yang jauh lebih tinggi dibandingkan genre lainnya dalam dataset ini.
 
 - **Top 10 Aktor Terbanyak Muncul**
-![Distribusi Durasi Film](img/s4.png)
+![Aktor Terbanyak Muncul](img/s4.png)
 
 Robert De Niro muncul dalam lebih dari 50 film, menjadikannya aktor dengan penampilan terbanyak dalam dataset ini. Samuel L. Jackson berada di posisi kedua dengan lebih dari 40 film, menunjukkan konsistensi dan produktivitas tinggi dari kedua aktor tersebut.
 
 - **Distribusi Rating Film**
-![Distribusi Durasi Film](img/s5.png)
+![Distribusi Rating Film](img/s5.png)
 
 Distribusi rating film menunjukkan puncak yang jelas antara rating 6 hingga 7.5. Ini mengindikasikan bahwa sebagian besar film dalam dataset ini menerima rating yang relatif baik atau di atas rata-rata.
 
 - **Correlation Heatmap**
-![Distribusi Durasi Film](img/s6.png)
+![Correlation Heatmap](img/s6.png)
 
 Terdapat korelasi positif yang kuat antara "popularity" dengan "vote_count" (0.78), dan juga antara "vote_count" dengan "revenue" (0.78). Selain itu, "popularity" dan "revenue" juga menunjukkan korelasi positif yang cukup kuat (0.64). Ini mengindikasikan bahwa film yang lebih populer cenderung memiliki jumlah suara (votes) yang lebih tinggi, dan pada gilirannya, cenderung menghasilkan pendapatan (revenue) yang lebih besar.
 
@@ -231,64 +231,31 @@ Kekurangan:
 
 ### Hasil Content Based Filtering
 
-![Distribusi Durasi Film](img/s7.png)
+![Hasil CBF](img/s7.png)
 
 - Output menunjukkan bahwa sistem rekomendasi berhasil mengidentifikasi film-film yang sangat relevan dengan "The Dark Knight Rises", seperti "The Dark Knight", "Batman", "Batman Forever", dan "Batman Returns". Ini mengindikasikan bahwa model kemiripan yang dibangun (menggunakan TF-IDF dan cosine similarity pada tag film) bekerja dengan baik dalam menangkap esensi genre, aktor, sutradara, dan kata kunci film, sehingga menghasilkan rekomendasi yang koheren.
 - Empat dari lima rekomendasi teratas adalah film Batman lainnya, menegaskan bahwa sistem sangat efektif dalam merekomendasikan bagian dari series yang sama atau film dengan tema dan genre yang sangat mirip. Kehadiran "Slow Burn" sebagai rekomendasi kelima, meskipun bukan bagian dari series Batman, menunjukkan bahwa ada kesamaan genre seperti 'mystery', 'crime', 'drama', dan 'thriller' yang juga dipertimbangkan oleh sistem.
   
 ## Evaluation
-
-
 ### Hasil evaluasi Content Based Filtering
 
-![Distribusi Durasi Film](img/s7.png)
+![Hasil Evaluasi](img/s7.png)
 
-| **Judul Film**      | **Precision\@5** | **Interpretasi Singkat**                                                              |
-| ------------------- | ---------------- | ------------------------------------------------------------------------------------- |
-| **The Dark Knight** | 1.00             | Semua rekomendasi mirip banget, relevansi tinggi dan konten cocok.                    |
-| **Inception**       | 1.00             | Top 5 hasilnya sangat relevan, mirip tema & genre.                                    |
-| **The Avengers**    | 1.00             | Hasil rekomendasi full akurat, semua film punya kemiripan konten yang kuat.           |
-| **Finding Nemo**    | 0.80             | Mayoritas hasil relevan, meski ada satu yang kurang mirip secara konten.              |
-| **American Psycho** | 0.40             | Cuma 2 dari 5 film yang benar-benar mirip — konten agak unik jadi hasil kurang cocok. |
+- Hasil evaluasi menunjukkan bahwa sistem CBF memberikan rekomendasi sangat relevan untuk film-film populer seperti The Dark Knight, Inception, dan The Avengers dengan skor Precision@5 sebesar 1.00, menandakan kemiripan tinggi dalam genre, kata kunci, dan kru. Finding Nemo masih cukup akurat dengan skor 0.80, sedangkan American Psycho hanya mencapai 0.40, kemungkinan karena karakteristiknya yang lebih unik dan minim kesamaan konten dengan film lain dalam dataset.
 
+### Precision@k
+Precision@K mengukur proporsi item relevan (misalnya film yang mirip) yang berhasil direkomendasikan oleh sistem di antara K rekomendasi teratas.
 
+### Formula 
 
+![Formula](img/s9.png)
 
-### Confussion Matrix
-**Logistic Regression**
-
-![Confussion Matrix](img/d4.png)
-
-**Support Vector Machine**
-
-![Confussion Matrix](img/d5.png)
-
-**Artificial Neural Network**
-
-![Confussion Matrix](img/d6.png)
-
-
-### ROC Comparison
-
-![ROC Comparison](img/d7.png)
-
-- Kurva ROC yang menampilkan trade-off antara true positive rate dan false positive rate, memberikan perspektif lebih lanjut terkait kemampuan deteksi positif dari setiap model. Visualisasi ini membantu mengidentifikasi model yang paling seimbang antara akurasi umum dan sensitivitas terhadap kelas minoritas.
-
-### Feature Importance 
-Gambar ini menampilkan fitur apa yang paling penting untuk model ini menggunakan **Logistic Regression**
-
-![Feature Importance](img/d3.png)
-
-- Berdasarkan hasil pada gambar, fitur yang paling berpengaruh terhadap kemungkinan stroke adalah usia (age) dengan koefisien paling besar positif, menandakan bahwa semakin tua seseorang, semakin tinggi risikonya
-
-**Tambahan**
-- Logistic regreession = Model ini menunjukkan performa yang paling seimbang. Dengan akurasi sebesar 77.98% dan skor ROC AUC sebesar 0.78, model ini mampu mendeteksi kelas minoritas (label 1) dengan recall yang cukup tinggi (0.70).
-- Support Vector Machine (SVM) = SVM menghasilkan akurasi sebesar 74.07% namun menunjukkan performa yang buruk dalam mengenali kelas minoritas. Dengan recall hanya 0.18 untuk label 1 dan ROC AUC 0.45, model ini memiliki kecenderungan kuat untuk bias terhadap kelas mayoritas
-- Artificial Neural Network = Model ANN menunjukkan performa yang sangat rendah dengan akurasi hanya sebesar 11.45%. Meskipun recall untuk kelas minoritas terlihat tinggi (0.98), hal ini disebabkan oleh model yang cenderung memprediksi sebagian besar data sebagai kelas positif, seperti terlihat dari confusion matrix-nya.
-
-**Semua yang saya bahas diatas sudah sesuai dengan konteks data, problem statement, dan solusi yang diinginkan**
+### Cara Kerja 
+- Sistem nyari hasil skor precision@k dari 5 film yang dijadikan test sample ('The Dark Knight','Inception','The Avengers','Finding Nemo','American Psycho') berdasarkan kemiripan konten (tags) gabungan dari genre, keywords, overview, cast, dan director.
+- Untuk setiap film yang direkomendasikan itu, dicek berapa banyak kata kunci/tag yang sama dari setiap film test sample.
+- Kalau jumlah tag yang overlap ≥ 5 → dianggap relevan.
 
 ## Kesimpulan 
-Berdasarkan keseluruhan proses analisis dan pemodelan yang telah dilakukan, Machine learning bisa membantu dalam mengidentifikasi pola risiko stroke dari berbagai data pasien, seperti data demografi, gaya hidup, dan kondisi kesehatan. Model-model yang umum dipakai, seperti Logistic Regression, Random Forest, atau SVM, bisa memberikan prediksi yang cukup akurat selama data yang digunakan lengkap dan sudah diproses dengan baik. Faktor-faktor utama yang memengaruhi risiko stroke biasanya meliputi tekanan darah tinggi, kadar kolesterol, usia, diabetes, dan kebiasaan merokok. Dengan adanya prediksi ini, dokter dan pasien dapat melakukan deteksi dini sehingga tindakan pencegahan bisa diambil sebelum stroke benar-benar terjadi, yang tentu saja sangat penting untuk menyelamatkan nyawa. Namun, tetap perlu diingat bahwa machine learning hanya alat bantu dan hasilnya harus dikombinasikan dengan evaluasi medis dari dokter sebelum mengambil keputusan akhir. Jadi, penggunaan machine learning dalam prediksi risiko stroke membuka peluang besar untuk meningkatkan efisiensi dan ketepatan dalam pencegahan stroke, yang menjanjikan masa depan kesehatan yang lebih baik.
+Berdasarkan keseluruhan proses analisis dan pemodelan yang telah dilakukan, sistem rekomendasi berbasis Content-Based Filtering (CBF) terbukti mampu memberikan rekomendasi film yang cukup relevan berdasarkan kemiripan konten antar film, seperti genre, sinopsis, keywords, hingga informasi kru dan pemain. Evaluasi menggunakan metrik Precision@5 menunjukkan bahwa film dengan popularitas tinggi dan konten yang kaya cenderung mendapat rekomendasi yang sangat akurat, sedangkan film dengan karakteristik lebih niche menghasilkan skor yang lebih rendah. Ini menegaskan bahwa CBF sangat bergantung pada informasi deskriptif yang tersedia di dataset. Ke depan, sistem seperti ini punya potensi besar dalam membantu pengguna menemukan film yang sesuai preferensi mereka, meskipun idealnya dikombinasikan dengan pendekatan lain seperti collaborative filtering untuk hasil yang lebih seimbang dan personal.
 
 
