@@ -143,13 +143,12 @@ Dataset yang digunakan terdiri dari dua file, yaitu “movies.csv” dan “cred
 
 ![Duplicated Data](img/s1.png)
 
-- Dari gambar diatas dapat disimpulkan bahwa tidak ada data duplikat dalam kedua dataset yang sedang dianalisis. Hasil dari df.duplicated().sum() menunjukkan angka 0, yang artinya tidak ada satupun baris yang sama atau duplikat di seluruh dataset. Selain itu, saat dicek lebih lanjut dengan df[df.duplicated()], hasilnya juga kosong.
+- Dari gambar diatas dapat disimpulkan bahwa tidak ada data duplikat dalam kedua dataset yang sedang dianalisis. Hasil dari movies.duplicated().sum() dan credits.duplicated().sum()menunjukkan angka 0, yang artinya tidak ada satupun baris yang sama atau duplikat di seluruh dataset. Selain itu, saat dicek lebih lanjut dengan movies[movies.duplicated()] dan credits[credits.duplicated()] hasilnya juga kosong.
 
 
 ### Exploratory Data Analysis
-Gambar barchart dibawah menunjukkan distribusi target 'Stroke'
 
-![Distribusi Target Stroke](img/d1.png)
+![Distribusi Durasi Film](img/s2.png)
 
 ### Correlation Heatmap
 Menampilkan korelasi antar fitur numerik dengan target 'Stroke'
