@@ -1,4 +1,4 @@
-# Recommendation-System
+![image](https://github.com/user-attachments/assets/572d236f-8134-414e-baf4-d7db059bea3c)# Recommendation-System
 
 # Laporan Proyek Machine Learning - Yuda Reyvandra Herman
 
@@ -176,96 +176,81 @@ Terdapat korelasi positif yang kuat antara "popularity" dengan "vote_count" (0.7
 ## Data Preparation
 
 ### Data Cleaning
-- Mengisi missing value pada kolom 'bmi' menggunakan median
-- Menghapus kategori 'other' pada kolom 'gender', karena hanya ada 2 gender saja di dunia ini, yaitu laki-laki dan perempuan
+- Mengisi missing value kolom teks 'homepage' Diisi dengan string kosong.
+- Mengisi missing value kolom teks 'overview' Diisi dengan string kosong.
+- Mengisi missing value kolom tanggal 'release_date' Di-convert ke datetime.
+- Mengisi missing value kolom durasi 'runtime' NaN diisi pakai median runtime.
+- Mengisi missing value kolom teks 'tagline' Diisi dengan string kosong.
 
 ### Data Preprocessing
-- Mengubah fitur kategorikal menjadi fitur numerikal menggunakan LabelEncoder
-- Melakukan feature scaling pada fitur numerikal dengan metode standarisasi (z-score)
+- Melakukan operasi merge (penggabungan) antara dataframe movies dengan dataframe credits. 
+- Melakukan pra-pemrosesan data tekstual dari beberapa kolom (genres, keywords, cast, crew, overview) dengan tujuan untuk menggabungkannya menjadi satu kolom tags. Proses ini melibatkan ekstraksi nama, normalisasi (mengubah ke huruf kecil, menghapus spasi), dan pembatasan jumlah item.
   
-### Data Splitting
-- Melakukan pemisahan data fitur (X) dan label (y)
-- Membagi data latih dan data uji menjadi 8:2 
+### Vectorization
+- Menggunakan TfidfVectorizer untuk mengubah data tekstual dari kolom 'tags' menjadi representasi numerik (vektor).
 
-### Data Balancing 
-- Menerapkan SMOTE untuk mem-balance data yang ada, karena data sebelumnya sangat imbalance sehingga model nantinya akan cenderung memprediksi kelas mayoritas
-- SMOTE hanya untuk data training
+### Cosine Similarity  
+- untuk menghitung kesamaan kosinus (cosine similarity) antar semua pasangan vektor film.
 
+### Fungsi Rekomendasi
+- Fungsi ini akan cari judul film yang dimasukkan user, lalu cek skor kemiripan dengan semua film lain. Top skor tertinggi (selain dirinya sendiri) akan ditampilkan sebagai daftar rekomendasi film serupa.
 
 ## Modeling
-Pada tahap Modeling, digunakan tiga algoritma: Logistic Regression, SVM, dan ANN, dengan data yang telah diseimbangkan menggunakan SMOTE untuk mengatasi ketimpangan kelas antara kasus stroke dan non-stroke.
+Pada tahap Modeling, hanya menggunakan satu pendekatan sistem rekomendasi film, yaitu menggunakan **Content Based Filtering**
 
 
 ### Tahapan dan Parameter Pemodelan
-- Import library dan model dari sklearn, termasuk Logistic Regression, SVM, ANN, dan metrik evaluasi seperti accuracy, ROC AUC, classification report, dan confusion matrix.
-- Definisikan model dalam dictionary models dengan parameter:
-    - Logistic Regression pakai max_iter=1000 supaya training convergen.
-    - SVM pakai probability=True supaya bisa output probabilitas.
-    - ANN pakai hidden_layer_sizes=(32,16), max_iter=1000, dan random_state=42 untuk konfigurasi jaringan dan kestabilan training.
-- Lakukan training model menggunakan data yang sudah di-balance dengan SMOTE (X_train_smote dan y_train_smote).
-- Prediksi kelas dan probabilitas pada data uji (X_test) menggunakan model yang sudah dilatih.
-- Hitung metrik evaluasi yaitu accuracy, ROC AUC (kalau tersedia), classification report (precision, recall, f1-score), dan confusion matrix.
-- Simpan hasil evaluasi tiap model ke dalam dictionary results untuk memudahkan perbandingan performa.
-- Cetak hasil metrik evaluasi agar mudah melihat performa masing-masing model.
+- Import library dari sklearn, pandas, numpy, serta modul pemrosesan teks seperti CountVectorizer atau TfidfVectorizer dan cosine_similarity untuk penghitungan kemiripan.
+- Lakukan preprocessing data:
+    - Bersihkan nilai kosong pada kolom overview, tagline, homepage.
+    - Ekstraksi informasi dari kolom genres, keywords, cast, dan crew (sutradara) menggunakan ast.literal_eval dan fungsi bantu.
+    - Gabungkan kolom-kolom penting menjadi satu kolom tags.
+- Lakukan vektorisasi teks menggunakan:
+    - CountVectorizer(max_features=5000, stop_words='english') untuk mengubah teks tags menjadi vektor angka berdasarkan frekuensi kata.
+- Hitung kemiripan antarfilm menggunakan:
+    - cosine_similarity() dari sklearn, untuk mengukur jarak antar-vektor film berdasarkan tags.
+- Definisikan fungsi rekomendasi:
+    - Ambil film yang ingin dicari, temukan vektor kemiripan tertinggi dengan film lainnya.
+    - Urutkan dan tampilkan top-N film terdekat (paling mirip).
+- Tampilkan hasil rekomendasi berdasarkan input user (judul film), lengkap dengan rekomendasi film yang mirip dari sistem.
 
 
 ### Cara Kerja Model
-- **Logistic Regression** = Logistic Regression merupakan salah satu metode klasifikasi yang berbasis pada model regresi linear, namun hasil akhirnya ditransformasikan menggunakan fungsi sigmoid. **Fungsi sigmoid** ini mengubah output linear menjadi nilai probabilitas antara 0 dan 1, yang kemudian digunakan untuk menentukan kelas dari data (biasanya dengan threshold 0.5). Secara konsep, algoritma ini menggunakan **transformasi log-odds**, yang merepresentasikan hubungan antara kombinasi fitur dengan kemungkinan terjadinya suatu peristiwa.
-- **Support Vector Machine** = SVM itu fokus buat nyari **hyperplane** terbaik yang bisa misahin dua kelas data dengan margin seluas mungkin. Artinya, model ini mencari batas pemisah yang paling jauh dari titik-titik data terdekat dari masing-masing kelas, yang disebut sebagai **support vectors**. Kalau data nggak bisa dipisahin secara linear, SVM bisa pakai **kernel trick** buat merubah data ke dimensi yang lebih tinggi, biar bisa dipisahin dengan **hyperplane**.
-- **Artificial Neural Network** = ANN atau jaringan saraf tiruan. Dalam kasus ini, saya menggunakan **Multilayer Perceptron (MLP)** dengan **dua hidden layer: satu dengan 32 neuron dan satu lagi dengan 16 neuron**. Data masuk dari input layer, lalu diproses di setiap neuron pada hidden layers, lewat operasi linear + aktivasi non-linear. Hasil akhirnya keluar di output layer sebagai probabilitas klasifikasi. ANN belajar lewat **backpropagation**, yaitu proses update bobot berdasarkan seberapa besar error yang dihasilkan, supaya model makin akurat melakukan prediksi di iterasi berikutnya.
-
-### Logistic Regression
+- **Content-Based Filtering** = Model ini fokus pada isi atau konten dari tiap film. Jadi bukan berdasarkan perilaku user, tapi berdasarkan kemiripan fitur antarfilm (seperti genre, aktor, sinopsis, sutradara, dll). Model ini bikin representasi teks (dari kolom tags) jadi bentuk numerik pakai vectorizer, lalu pakai cosine similarity buat ngukur seberapa mirip satu film dengan yang lain.
+  
 Kelebihan:
-- Sederhana dan mudah diinterpretasi: Cocok untuk memahami hubungan antar variabel.
-- Cepat dilatih: Komputasinya ringan, cocok untuk dataset kecil-menengah.
-- Bekerja baik jika hubungan antar fitur dan target bersifat linier.
-- Output probabilistik: Menghasilkan probabilitas prediksi, berguna untuk klasifikasi berbasis ambang batas (thresholding).
-
-Kekurangan:
-- Tidak cocok untuk hubungan non-linier (kecuali dimodifikasi dengan polynomial features).
-- Sensitif terhadap outlier dan multikolinearitas.
-- Kurang akurat dibanding model kompleks jika data sangat kompleks.
-
-### Support Vector Machine 
-Kelebihan:
-- Akurasi tinggi terutama pada data yang kompleks dan berdimensi tinggi.
-- Efektif pada data non-linier dengan penggunaan kernel (misalnya RBF, polynomial).
-- Robust terhadap overfitting terutama pada dataset dengan fitur banyak dan jumlah data terbatas.
-
-Kekurangan:
-- Lambat pada dataset besar (scalability buruk).
-- Pemilihan kernel dan tuning parameter seperti C dan gamma cukup rumit.
-- Sulit diinterpretasi, tidak cocok untuk aplikasi yang memerlukan transparansi model.
-
-### Artificial Neural Network
-Kelebihan:
-- Sangat fleksibel dan mampu menangkap hubungan non-linier yang kompleks.
-- Mampu belajar dari data besar dengan banyak fitur.
-- Bisa menghasilkan prediksi yang sangat akurat jika dilatih dengan benar.
+- Model ini kasih rekomendasi yang customized berdasarkan informasi dari film yang udah diketahui. Jadi kalau user suka film dengan genre action dan aktor tertentu, sistem bakal nyari film lain yang mirip banget sama itu.
+- Karena sistem cuma butuh informasi dari item (film), kita bisa langsung kasih rekomendasi bahkan kalau cuma satu user doang yang pakai, gak perlu nunggu ada banyak review/rating dari user lain.
+- Karena fitur-fiturnya eksplisit (kayak genre, cast, overview), sistem ini relatif lebih gampang dijelasin kayak, “Film ini direkomendasikan karena mirip dengan film sebelumnya di genre dan aktornya.”
   
 Kekurangan:
-- Butuh waktu dan sumber daya komputasi besar.
-- Tuning hyperparameter (jumlah neuron, layer, learning rate, dll.) bisa rumit.
-- Kurang interpretatif (dikenal sebagai "black-box model").
+- Karena sistem cuma cari yang mirip dari konten, user bisa “terjebak” di zona yang sama. Misalnya dia suka thriller, ya direkomendasinya thriller terus. Kurang variasi atau serendipity gitu.
+- Kalau datanya jelek atau informasinya kurang (misal overview atau genres kosong), maka hasil rekomendasinya bisa gak akurat. Jadi sangat tergantung pada kualitas preprocessing & representasi fitur.
+- Gak bisa tangkap tren global atau preferensi kolektif, Misalnya ada film yang lagi viral atau disukai banyak orang, CBF gak akan tahu itu populer kecuali user udah pernah nonton film serupa. Jadi gak bisa manfaatin efek “social proof” kayak di collaborative filtering.
 
 
+### Hasil Content Based Filtering
+
+![Distribusi Durasi Film](img/s7.png)
+
+- Output menunjukkan bahwa sistem rekomendasi berhasil mengidentifikasi film-film yang sangat relevan dengan "The Dark Knight Rises", seperti "The Dark Knight", "Batman", "Batman Forever", dan "Batman Returns". Ini mengindikasikan bahwa model kemiripan yang dibangun (menggunakan TF-IDF dan cosine similarity pada tag film) bekerja dengan baik dalam menangkap esensi genre, aktor, sutradara, dan kata kunci film, sehingga menghasilkan rekomendasi yang koheren.
+- Empat dari lima rekomendasi teratas adalah film Batman lainnya, menegaskan bahwa sistem sangat efektif dalam merekomendasikan bagian dari series yang sama atau film dengan tema dan genre yang sangat mirip. Kehadiran "Slow Burn" sebagai rekomendasi kelima, meskipun bukan bagian dari series Batman, menunjukkan bahwa ada kesamaan genre seperti 'mystery', 'crime', 'drama', dan 'thriller' yang juga dipertimbangkan oleh sistem.
+  
 ## Evaluation
-| **Metrik**    | **Deskripsi**                                                                                                                                                                                                            |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Accuracy**  | Rasio prediksi yang benar dari seluruh prediksi. Pada kasus ini, Logistic Regression memberikan akurasi tertinggi (77.98%), artinya model ini paling banyak menghasilkan prediksi yang benar secara keseluruhan.         |
-| **Precision** | Dari seluruh prediksi stroke, berapa yang benar-benar stroke. SVM dan ANN punya precision rendah untuk kelas stroke, menandakan banyak false positive. Logistic Regression sedikit lebih baik, tapi tetap belum optimal. |
-| **Recall**    | Dari seluruh kasus stroke asli, berapa banyak yang berhasil dideteksi. Logistic Regression punya **recall tinggi (70%)**, artinya cukup bagus dalam mendeteksi kasus stroke walau dengan risiko false positive.          |
-| **F1-Score**  | Rata-rata harmonis antara precision dan recall. Karena model Logistic Regression punya balance antara keduanya, F1-nya (24%) jadi yang paling mending dibanding dua model lain.                                          |
 
-### Hasil evaluasi model 
-| Model                   | Kelas | Accuracy | Precision | Recall | F1-Score |
-| ----------------------- | ----- | -------- | --------- | ------ | -------- |
-| **Logistic Regression** | 0     | 0.7798   | 0.98      | 0.78   | 0.87     |
-|                         | 1     |          | 0.14      | 0.70   | 0.24     |
-| **SVM**                 | 0     | 0.7407   | 0.95      | 0.77   | 0.85     |
-|                         | 1     |          | 0.04      | 0.18   | 0.06     |
-| **ANN**                 | 0     | 0.1145   | 0.99      | 0.07   | 0.13     |
-|                         | 1     |          | 0.05      | 0.98   | 0.10     |
+
+### Hasil evaluasi Content Based Filtering
+
+![Distribusi Durasi Film](img/s7.png)
+
+| **Judul Film**      | **Precision\@5** | **Interpretasi Singkat**                                                              |
+| ------------------- | ---------------- | ------------------------------------------------------------------------------------- |
+| **The Dark Knight** | 1.00             | Semua rekomendasi mirip banget, relevansi tinggi dan konten cocok.                    |
+| **Inception**       | 1.00             | Top 5 hasilnya sangat relevan, mirip tema & genre.                                    |
+| **The Avengers**    | 1.00             | Hasil rekomendasi full akurat, semua film punya kemiripan konten yang kuat.           |
+| **Finding Nemo**    | 0.80             | Mayoritas hasil relevan, meski ada satu yang kurang mirip secara konten.              |
+| **American Psycho** | 0.40             | Cuma 2 dari 5 film yang benar-benar mirip — konten agak unik jadi hasil kurang cocok. |
+
 
 
 
