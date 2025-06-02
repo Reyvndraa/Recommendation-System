@@ -148,27 +148,27 @@ Dataset yang digunakan terdiri dari dua file, yaitu “movies.csv” dan “cred
 
 ### Exploratory Data Analysis
 
-- Distribusi Durasi Film
+- **Distribusi Durasi Film**
 ![Distribusi Durasi Film](img/s2.png)
 
 - Grafik menunjukkan bahwa sebagian besar film memiliki durasi antara 90 hingga 120 menit, dengan puncaknya di sekitar 100 menit. Ini mengindikasikan bahwa durasi film yang paling umum atau "standar" berada dalam rentang tersebut.
 
-- Top 10 Genre Terpopuler
+- **Top 10 Genre Terpopuler**
 ![Distribusi Durasi Film](img/s3.png)
 
 - Genre "Drama" adalah yang paling populer secara signifikan, dengan jumlah film melebihi 2250. Ini menunjukkan bahwa film-film drama memiliki representasi yang jauh lebih tinggi dibandingkan genre lainnya dalam dataset ini.
 
-- Top 10 Aktor Terbanyak Muncul
+- **Top 10 Aktor Terbanyak Muncul**
 ![Distribusi Durasi Film](img/s4.png)
 
 - Robert De Niro muncul dalam lebih dari 50 film, menjadikannya aktor dengan penampilan terbanyak dalam dataset ini. Samuel L. Jackson berada di posisi kedua dengan lebih dari 40 film, menunjukkan konsistensi dan produktivitas tinggi dari kedua aktor tersebut.
 
-- Distribusi Rating Film
+- **Distribusi Rating Film**
 ![Distribusi Durasi Film](img/s5.png)
 
 - Distribusi rating film menunjukkan puncak yang jelas antara rating 6 hingga 7.5. Ini mengindikasikan bahwa sebagian besar film dalam dataset ini menerima rating yang relatif baik atau di atas rata-rata.
 
-- Correlation Heatmap
+- **Correlation Heatmap**
 ![Distribusi Durasi Film](img/s6.png)
 
 - Terdapat korelasi positif yang kuat antara "popularity" dengan "vote_count" (0.78), dan juga antara "vote_count" dengan "revenue" (0.78). Selain itu, "popularity" dan "revenue" juga menunjukkan korelasi positif yang cukup kuat (0.64). Ini mengindikasikan bahwa film yang lebih populer cenderung memiliki jumlah suara (votes) yang lebih tinggi, dan pada gilirannya, cenderung menghasilkan pendapatan (revenue) yang lebih besar.
