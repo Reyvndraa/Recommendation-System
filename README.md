@@ -74,28 +74,28 @@ Dataset yang digunakan terdiri dari dua file, yaitu “movies.csv” dan “cred
 | crew      | Daftar kru produksi film           |
 
 ### Fitur (movies.csv)
-| No. | Kolom                  || Deskripsi                                                               |
-| --- | ---------------------- || ----------------------------------------------------------------------- |
-| 1   | `budget`               || Anggaran produksi film                                                  |
-| 2   | `genres`               || List genre film                                                         |
-| 3   | `homepage`             || URL situs resmi film (kalau ada).                                       |
-| 4   | `id`                   || ID unik untuk setiap film                                               |
-| 5   | `keywords`             || Kata kunci terkait isi/tema film                                        |
-| 6   | `original_language`    || Bahasa asli saat film diproduksi (contoh: `en`, `fr`, `ko`, dll).       | 
-| 7   | `original_title`       || Judul asli film (kadang beda sama `title`, terutama untuk film asing).  |
-| 8   | `overview`             || Ringkasan atau sinopsis film.                                           |
-| 9   | `popularity`           || Skor popularitas (kayaknya dihitung dari views, rating, dll).           |
-| 10  | `production_companies` || List perusahaan produksi film                                           |
-| 11  | `production_countries` || Negara tempat produksi film                                             |
-| 12  | `release_date`         || Tanggal rilis film.                                                     |
-| 13  | `revenue`              || Pendapatan kotor film                                                   |
-| 14  | `runtime`              || Durasi film dalam menit.                                                |
-| 15  | `spoken_languages`     || Bahasa yang digunakan dalam film                                        |
-| 16  | `status`               || Status film (contoh: `Released`, `Post Production', 'Rumored`).         |
-| 17  | `tagline`              || Slogan atau tagline dari film.                                          |
-| 18  | `title`                || Judul film yang umum diketahui.                                         |
-| 19  | `vote_average`         || Rata-rata rating dari user.                                             |
-| 20  | `vote_count`           || Total jumlah vote yang diterima.                                        |
+| No. | Kolom                  | Deskripsi                                                               |
+| --- | ---------------------- | ----------------------------------------------------------------------- |
+| 1   | `budget`               | Anggaran produksi film                                                  |
+| 2   | `genres`               | List genre film                                                         |
+| 3   | `homepage`             | URL situs resmi film (kalau ada).                                       |
+| 4   | `id`                   | ID unik untuk setiap film                                               |
+| 5   | `keywords`             | Kata kunci terkait isi/tema film                                        |
+| 6   | `original_language`    | Bahasa asli saat film diproduksi (contoh: `en`, `fr`, `ko`, dll).       | 
+| 7   | `original_title`       | Judul asli film (kadang beda sama `title`, terutama untuk film asing).  |
+| 8   | `overview`             | Ringkasan atau sinopsis film.                                           |
+| 9   | `popularity`           | Skor popularitas (kayaknya dihitung dari views, rating, dll).           |
+| 10  | `production_companies` | List perusahaan produksi film                                           |
+| 11  | `production_countries` | Negara tempat produksi film                                             |
+| 12  | `release_date`         | Tanggal rilis film.                                                     |
+| 13  | `revenue`              | Pendapatan kotor film                                                   |
+| 14  | `runtime`              | Durasi film dalam menit.                                                |
+| 15  | `spoken_languages`     | Bahasa yang digunakan dalam film                                        |
+| 16  | `status`               | Status film (contoh: `Released`, `Post Production', 'Rumored`).         |
+| 17  | `tagline`              | Slogan atau tagline dari film.                                          |
+| 18  | `title`                | Judul film yang umum diketahui.                                         |
+| 19  | `vote_average`         | Rata-rata rating dari user.                                             |
+| 20  | `vote_count`           | Total jumlah vote yang diterima.                                        |
 
 
 ### Missing Value (credit.csv)
