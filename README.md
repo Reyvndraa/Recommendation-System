@@ -6,7 +6,7 @@
 
 Industri perfilman saat ini mengalami pertumbuhan yang sangat pesat, baik dari segi jumlah produksi film maupun platform distribusinya. Dengan hadirnya layanan streaming digital seperti Netflix, Disney+, Amazon Prime, dan lainnya, pengguna kini dihadapkan pada ribuan pilihan film dalam berbagai genre, bahasa, dan gaya produksi. Hal ini justru memunculkan tantangan baru: bagaimana pengguna bisa menemukan film yang sesuai dengan selera mereka secara cepat dan efisien, tanpa harus menelusuri seluruh katalog secara manual.
 
-Salah satu solusi yang terbukti efektif dalam menjawab tantangan ini adalah sistem rekomendasi berbasis content-based filtering. Sistem ini bekerja dengan cara menganalisis konten atau atribut dari film—seperti genre, sinopsis (overview), kata kunci (keywords), pemeran (cast), dan kru (crew)—untuk menentukan kesamaan antarfilm, lalu merekomendasikan film yang mirip dengan film yang disukai atau pernah ditonton oleh pengguna (Aggarwal, 2016).
+Salah satu solusi yang terbukti efektif dalam menjawab tantangan ini adalah sistem rekomendasi berbasis content-based filtering. Sistem ini bekerja dengan cara menganalisis konten atau atribut dari film, seperti genre, sinopsis (overview), kata kunci (keywords), pemeran (cast), dan kru (crew) untuk menentukan kesamaan antarfilm, lalu merekomendasikan film yang mirip dengan film yang disukai atau pernah ditonton oleh pengguna (Aggarwal, 2016).
 
 Pengembangan sistem rekomendasi ini bertujuan untuk meningkatkan pengalaman pengguna dalam menjelajahi film yang sesuai dengan preferensi mereka. Selain itu, teknologi ini juga dapat membantu platform streaming atau penyedia layanan hiburan untuk meningkatkan retensi pengguna, personalisasi konten, dan efisiensi dalam promosi film (Netflix Technology Blog, 2019).
 
@@ -141,9 +141,9 @@ Dataset yang digunakan terdiri dari dua file, yaitu “movies.csv” dan “cred
 
 #### Duplicated Data
 
-![Duplicated Data](img/d8.png)
+![Duplicated Data](img/s1.png)
 
-- Dari gambar diatas dapat disimpulkan bahwa tidak ada data duplikat dalam dataset yang sedang dianalisis. Hasil dari df.duplicated().sum() menunjukkan angka 0, yang artinya tidak ada satupun baris yang sama atau duplikat di seluruh dataset. Selain itu, saat dicek lebih lanjut dengan df[df.duplicated()], hasilnya juga kosong yang artinya dataframe duplicate_rows_df tidak menemukan baris apapun yang duplikat dari dataset.
+- Dari gambar diatas dapat disimpulkan bahwa tidak ada data duplikat dalam kedua dataset yang sedang dianalisis. Hasil dari df.duplicated().sum() menunjukkan angka 0, yang artinya tidak ada satupun baris yang sama atau duplikat di seluruh dataset. Selain itu, saat dicek lebih lanjut dengan df[df.duplicated()], hasilnya juga kosong.
 
 
 ### Exploratory Data Analysis
