@@ -239,7 +239,7 @@ Kekurangan:
 ## Evaluation
 ### Hasil evaluasi Content Based Filtering
 
-![Hasil Evaluasi](img/s7.png)
+![Hasil Evaluasi](img/s8.png)
 
 - Hasil evaluasi menunjukkan bahwa sistem CBF memberikan rekomendasi sangat relevan untuk film-film populer seperti The Dark Knight, Inception, dan The Avengers dengan skor Precision@5 sebesar 1.00, menandakan kemiripan tinggi dalam genre, kata kunci, dan kru. Finding Nemo masih cukup akurat dengan skor 0.80, sedangkan American Psycho hanya mencapai 0.40, kemungkinan karena karakteristiknya yang lebih unik dan minim kesamaan konten dengan film lain dalam dataset.
 
