@@ -255,6 +255,14 @@ Precision@K mengukur proporsi item relevan (misalnya film yang mirip) yang berha
 - Untuk setiap film yang direkomendasikan itu, dicek berapa banyak kata kunci/tag yang sama dari setiap film test sample.
 - Kalau jumlah tag yang overlap ≥ 5 → dianggap relevan.
 
+### Jawaban untuk problem statement
+1. Bagaimana memanfaatkan atribut film seperti genre, sinopsis, kata kunci, dan pemeran utama untuk mengukur kesamaan antarfilm dalam model content-based filtering.
+   **Jawaban** : Model kamu menggabungkan berbagai atribut penting seperti genre, overview, keywords, cast, dan crew (khususnya director) jadi satu kolom tags. Terus kamu ubah itu jadi representasi vektor (TF-IDF atau CountVectorizer), lalu menghitung similarity antar film pakai cosine similarity. Artinya, kamu secara langsung dan eksplisit udah memanfaatkan atribut-atribut itu untuk mengukur kesamaan film.
+
+2. Bagaimana cara mengembangkan sistem rekomendasi film yang mampu menyajikan rekomendasi secara personal berdasarkan film yang ditonton atau dicari pengguna sebelumnya.
+   **Jawaban** : Model ini memberikan rekomendasi berdasarkan satu input film (misalnya, user nonton Inception, sistem kasih film yang mirip dari segi konten). Ini adalah bentuk content-based filtering yang personalized, karena output-nya disesuaikan dengan film yang pernah disukai user. Meskipun belum melibatkan data user secara eksplisit (kayak riwayat nonton), pendekatan ini tetap termasuk personalisasi berbasis item yang disukai.
+
+
 ## Kesimpulan 
 Berdasarkan keseluruhan proses analisis dan pemodelan yang telah dilakukan, sistem rekomendasi berbasis Content-Based Filtering (CBF) terbukti mampu memberikan rekomendasi film yang cukup relevan berdasarkan kemiripan konten antar film, seperti genre, sinopsis, keywords, hingga informasi kru dan pemain. Evaluasi menggunakan metrik Precision@5 menunjukkan bahwa film dengan popularitas tinggi dan konten yang kaya cenderung mendapat rekomendasi yang sangat akurat, sedangkan film dengan karakteristik lebih niche menghasilkan skor yang lebih rendah. Ini menegaskan bahwa CBF sangat bergantung pada informasi deskriptif yang tersedia di dataset. Ke depan, sistem seperti ini punya potensi besar dalam membantu pengguna menemukan film yang sesuai preferensi mereka, meskipun idealnya dikombinasikan dengan pendekatan lain seperti collaborative filtering untuk hasil yang lebih seimbang dan personal.
 
