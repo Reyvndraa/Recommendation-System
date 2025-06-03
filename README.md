@@ -203,8 +203,8 @@ Pada tahap Modeling, hanya menggunakan satu pendekatan sistem rekomendasi film, 
     - Bersihkan nilai kosong pada kolom overview, tagline, homepage.
     - Ekstraksi informasi dari kolom genres, keywords, cast, dan crew (sutradara) menggunakan ast.literal_eval dan fungsi bantu.
     - Gabungkan kolom-kolom penting menjadi satu kolom tags.
-- Lakukan vektorisasi teks menggunakan:
-- Hitung kemiripan antarfilm menggunakan:
+- Lakukan vektorisasi teks menggunakan CountVectorizer
+- Hitung kemiripan antarfilm menggunakan Cosine Similarity
 - Definisikan fungsi rekomendasi:
     - Ambil film yang ingin dicari, temukan vektor kemiripan tertinggi dengan film lainnya.
     - Urutkan dan tampilkan top-N film terdekat (paling mirip).
