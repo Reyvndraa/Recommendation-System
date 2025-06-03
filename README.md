@@ -188,12 +188,10 @@ Terdapat korelasi positif yang kuat antara "popularity" dengan "vote_count" (0.7
   
 ### Vectorization
 - Menggunakan TfidfVectorizer untuk mengubah data tekstual dari kolom 'tags' menjadi representasi numerik (vektor).
+- CountVectorizer(max_features=5000, stop_words='english') untuk mengubah teks tags menjadi vektor angka berdasarkan frekuensi kata.
 
 ### Cosine Similarity  
 - untuk menghitung kesamaan kosinus (cosine similarity) antar semua pasangan vektor film.
-
-### Fungsi Rekomendasi
-- Fungsi ini akan cari judul film yang dimasukkan user, lalu cek skor kemiripan dengan semua film lain. Top skor tertinggi (selain dirinya sendiri) akan ditampilkan sebagai daftar rekomendasi film serupa.
 
 ## Modeling
 Pada tahap Modeling, hanya menggunakan satu pendekatan sistem rekomendasi film, yaitu menggunakan **Content Based Filtering**
@@ -206,18 +204,17 @@ Pada tahap Modeling, hanya menggunakan satu pendekatan sistem rekomendasi film, 
     - Ekstraksi informasi dari kolom genres, keywords, cast, dan crew (sutradara) menggunakan ast.literal_eval dan fungsi bantu.
     - Gabungkan kolom-kolom penting menjadi satu kolom tags.
 - Lakukan vektorisasi teks menggunakan:
-    - CountVectorizer(max_features=5000, stop_words='english') untuk mengubah teks tags menjadi vektor angka berdasarkan frekuensi kata.
 - Hitung kemiripan antarfilm menggunakan:
-    - cosine_similarity() dari sklearn, untuk mengukur jarak antar-vektor film berdasarkan tags.
 - Definisikan fungsi rekomendasi:
     - Ambil film yang ingin dicari, temukan vektor kemiripan tertinggi dengan film lainnya.
     - Urutkan dan tampilkan top-N film terdekat (paling mirip).
+- Fungsi Rekomendasi ini akan cari judul film yang dimasukkan user, lalu cek skor kemiripan dengan semua film lain. Top skor tertinggi (selain dirinya sendiri) akan ditampilkan sebagai daftar rekomendasi film serupa.
 - Tampilkan hasil rekomendasi berdasarkan input user (judul film), lengkap dengan rekomendasi film yang mirip dari sistem.
 
 
 ### Cara Kerja Model
 - **Content-Based Filtering** = Model ini fokus pada isi atau konten dari tiap film. Jadi bukan berdasarkan perilaku user, tapi berdasarkan kemiripan fitur antarfilm (seperti genre, aktor, sinopsis, sutradara, dll). Model ini bikin representasi teks (dari kolom tags) jadi bentuk numerik pakai vectorizer, lalu pakai cosine similarity buat ngukur seberapa mirip satu film dengan yang lain.
-  
+
 Kelebihan:
 - Model ini kasih rekomendasi yang customized berdasarkan informasi dari film yang udah diketahui. Jadi kalau user suka film dengan genre action dan aktor tertentu, sistem bakal nyari film lain yang mirip banget sama itu.
 - Karena sistem cuma butuh informasi dari item (film), kita bisa langsung kasih rekomendasi bahkan kalau cuma satu user doang yang pakai, gak perlu nunggu ada banyak review/rating dari user lain.
