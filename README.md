@@ -258,7 +258,7 @@ Precision@K mengukur proporsi item relevan (misalnya film yang mirip) yang berha
 ### Jawaban untuk problem statement
 1. Bagaimana memanfaatkan atribut film seperti genre, sinopsis, kata kunci, dan pemeran utama untuk mengukur kesamaan antarfilm dalam model content-based filtering.
    
-   **Jawaban** : Model kamu menggabungkan berbagai atribut penting seperti genre, overview, keywords, cast, dan crew (khususnya director) jadi satu kolom tags. Terus kamu ubah itu jadi representasi vektor (TF-IDF atau CountVectorizer), lalu menghitung similarity antar film pakai cosine similarity. Artinya, kamu secara langsung dan eksplisit udah memanfaatkan atribut-atribut itu untuk mengukur kesamaan film.
+   **Jawaban** : Model ini menggabungkan berbagai atribut penting seperti genre, overview, keywords, cast, dan crew (khususnya director) jadi satu kolom tags. Terus diubah jadi representasi vektor (TF-IDF), lalu menghitung similarity antar film pakai cosine similarity. Artinya, model secara langsung dan eksplisit sudah memanfaatkan atribut-atribut itu untuk mengukur kesamaan film.
 
 3. Bagaimana cara mengembangkan sistem rekomendasi film yang mampu menyajikan rekomendasi secara personal berdasarkan film yang ditonton atau dicari pengguna sebelumnya.
 
